@@ -1,4 +1,13 @@
 MediaBrowser.Theater.Plugins
-============================
+====================
 
-Contains all of the Media Browser Theater plugins supported by the core development team.
+This repository contains all of the theater plugins managed by the Media Browser core team.
+
+Each of the projects has a build event that copies it's output to the programdata-theater/plugins folder. 
+
+By default this assumes you have the MBT repository side by side in a folder called 'MediaBrowser.Theater'. If this is not the case, or if you've installed the server than you'll need to update the build events manually in order to test code changes.
+
+
+## More Information ##
+
+[How to Build an MBT Plugin](https://github.com/MediaBrowser/MediaBrowser.Theater/wiki/Page-Development)
