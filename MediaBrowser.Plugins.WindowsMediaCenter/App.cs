@@ -55,7 +55,7 @@ namespace MediaBrowser.Plugins.WindowsMediaCenter
 
         private string GetPath()
         {
-            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "ehome\\eshell.exe");
+            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Windows), "ehome\\ehshell.exe");
         }
 
         void process_Exited(object sender, EventArgs e)
