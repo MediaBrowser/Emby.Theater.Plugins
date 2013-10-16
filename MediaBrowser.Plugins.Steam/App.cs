@@ -31,15 +31,7 @@ namespace MediaBrowser.Plugins.Steam
         private string GetSteamPathFromRegistry()
         {
             RegistryKey regKey = Registry.CurrentUser;
-
-            if (regKey.OpenSubKey(@"Software\Valve\Steam") != null)
-            {
-                return regKey.GetValue("SteamExe").ToString();
-            }
-            else
-            {
-                throw new KeyNotFoundException();
-            }
+            return regKey.OpenSubKey(@"Software\Valve\Steam").GetValue("SteamExe").ToString();
         }
 
         public Task Launch()
