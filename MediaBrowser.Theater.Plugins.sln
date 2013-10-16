@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{129926
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Plugins.WindowsMediaCenter", "MediaBrowser.Plugins.WindowsMediaCenter\MediaBrowser.Plugins.WindowsMediaCenter.csproj", "{F1BDEF9D-F6E9-4906-97F8-A9278A908192}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Plugins.Steam", "MediaBrowser.Plugins.Steam\MediaBrowser.Plugins.Steam.csproj", "{D9071D67-C74B-40B9-9ED8-2DCDBC258565}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{F1BDEF9D-F6E9-4906-97F8-A9278A908192}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1BDEF9D-F6E9-4906-97F8-A9278A908192}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1BDEF9D-F6E9-4906-97F8-A9278A908192}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9071D67-C74B-40B9-9ED8-2DCDBC258565}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9071D67-C74B-40B9-9ED8-2DCDBC258565}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9071D67-C74B-40B9-9ED8-2DCDBC258565}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9071D67-C74B-40B9-9ED8-2DCDBC258565}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
