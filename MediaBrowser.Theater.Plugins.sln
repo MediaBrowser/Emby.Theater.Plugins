@@ -14,6 +14,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Plugins.Window
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Plugins.Steam", "MediaBrowser.Plugins.Steam\MediaBrowser.Plugins.Steam.csproj", "{D9071D67-C74B-40B9-9ED8-2DCDBC258565}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Plugins.Netflix", "MediaBrowser.Plugins.Netflix\MediaBrowser.Plugins.Netflix.csproj", "{912CCADB-CC57-41FC-A390-74FC7ED8EAF5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,6 +34,10 @@ Global
 		{D9071D67-C74B-40B9-9ED8-2DCDBC258565}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9071D67-C74B-40B9-9ED8-2DCDBC258565}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9071D67-C74B-40B9-9ED8-2DCDBC258565}.Release|Any CPU.Build.0 = Release|Any CPU
+		{912CCADB-CC57-41FC-A390-74FC7ED8EAF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{912CCADB-CC57-41FC-A390-74FC7ED8EAF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{912CCADB-CC57-41FC-A390-74FC7ED8EAF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{912CCADB-CC57-41FC-A390-74FC7ED8EAF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
