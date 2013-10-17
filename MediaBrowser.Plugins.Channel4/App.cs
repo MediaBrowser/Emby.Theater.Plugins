@@ -7,7 +7,9 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-namespace MediaBrowser.Plugins.Netflix
+using System.Windows.Forms;
+
+namespace MediaBrowser.Plugins.Channel4
 {
     public class App : IApp
     {
@@ -28,63 +30,34 @@ namespace MediaBrowser.Plugins.Netflix
             return image;
         }
 
-        private string GetSteamPathFromRegistry()
-        {
-            RegistryKey regKey = Registry.CurrentUser;
-            return regKey.OpenSubKey(@"Software\Valve\Steam").GetValue("SteamExe").ToString();
-        }
-
         public Task Launch()
         {
             return Task.Run(() => LaunchProcess());
         }
 
-
-        private string GetProcessArguments()
+        private bool checkChannel4Installed()
         {
-            string arguments = "";
-            if (Process.GetProcessesByName("Steam").Length > 0)
+            string[] dirs = Directory.GetDirectories(@"C:\\Program Files\\WindowsApps\\", "*4onDemand*");
+            if (dirs.Length > 0)
             {
-                arguments = "steam://open/bigpicture";
+                return true;
             }
-            else
-            {
-                arguments = "-bigpicture";
-            }
-            return arguments;
+            return false;
         }
 
         private void LaunchProcess()
         {
-            var process = new Process
+            if (checkChannel4Installed())
             {
-                EnableRaisingEvents = true,
-
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = GetSteamPathFromRegistry(),
-                    WindowStyle = ProcessWindowStyle.Hidden,
-                    ErrorDialog = false,
-                    UseShellExecute = false,
-                    Arguments = GetProcessArguments()
-                }
-            };
-
-            process.Exited += process_Exited;
-
-            process.Start();
-        }
-
-        void process_Exited(object sender, EventArgs e)
-        {
-            var process = (Process)sender;
-
-            process.Dispose();
+                SendKeys.SendWait("^{ESC}");
+                SendKeys.SendWait("4oD");
+                SendKeys.SendWait("{ENTER}");
+            }
         }
 
         public string Name
         {
-            get { return "Steam"; }
+            get { return "4oD"; }
         }
 
         public void Dispose()
