@@ -16,6 +16,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Plugins.Steam"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Plugins.Netflix", "MediaBrowser.Plugins.Netflix\MediaBrowser.Plugins.Netflix.csproj", "{912CCADB-CC57-41FC-A390-74FC7ED8EAF5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Plugins.Channel5", "MediaBrowser.Plugins.Channel5\MediaBrowser.Plugins.Channel5.csproj", "{BDA0D9E3-5470-4C31-B756-0FF1DADC434A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Plugins.Channel4", "MediaBrowser.Plugins.Channel4\MediaBrowser.Plugins.Channel4.csproj", "{10E7BAF7-B7BF-4F1B-8034-CE03AAAC5037}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaBrowser.Plugins.TVCatchup", "MediaBrowser.Plugins.TVCatchup\MediaBrowser.Plugins.TVCatchup.csproj", "{70A5E9CF-AB75-4DBE-8B3F-BF9AED36FB0D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +44,18 @@ Global
 		{912CCADB-CC57-41FC-A390-74FC7ED8EAF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{912CCADB-CC57-41FC-A390-74FC7ED8EAF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{912CCADB-CC57-41FC-A390-74FC7ED8EAF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDA0D9E3-5470-4C31-B756-0FF1DADC434A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDA0D9E3-5470-4C31-B756-0FF1DADC434A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDA0D9E3-5470-4C31-B756-0FF1DADC434A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDA0D9E3-5470-4C31-B756-0FF1DADC434A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10E7BAF7-B7BF-4F1B-8034-CE03AAAC5037}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10E7BAF7-B7BF-4F1B-8034-CE03AAAC5037}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10E7BAF7-B7BF-4F1B-8034-CE03AAAC5037}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10E7BAF7-B7BF-4F1B-8034-CE03AAAC5037}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70A5E9CF-AB75-4DBE-8B3F-BF9AED36FB0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70A5E9CF-AB75-4DBE-8B3F-BF9AED36FB0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70A5E9CF-AB75-4DBE-8B3F-BF9AED36FB0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70A5E9CF-AB75-4DBE-8B3F-BF9AED36FB0D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

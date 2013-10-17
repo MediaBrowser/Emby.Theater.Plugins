@@ -7,8 +7,9 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 
-namespace MediaBrowser.Plugins.Steam
+namespace MediaBrowser.Plugins.Netflix
 {
     public class App : IApp
     {
@@ -34,40 +35,24 @@ namespace MediaBrowser.Plugins.Steam
             return Task.Run(() => LaunchProcess());
         }
 
-        private void LaunchProcess()
+        private bool checkNetflixInstalled()
         {
-            Version win8version = new Version(6, 2, 9200, 0);
-
-            if (Environment.OSVersion.Platform == PlatformID.Win32NT &&
-                Environment.OSVersion.Version >= win8version)
+            string[] dirs = Directory.GetDirectories(@"C:\\Program Files\\WindowsApps\\", "*Netflix*");
+            if (dirs.Length > 0)
             {
-                // check if Netflix Metro app is installed to stop it trying to load the app and then windows asking for a program to run the protocol
-
-                var process = new Process
-                {
-                    EnableRaisingEvents = true,
-
-                    StartInfo = new ProcessStartInfo
-                    {
-                        FileName = @"netflix://",
-                        WindowStyle = ProcessWindowStyle.Hidden,
-                        ErrorDialog = true,
-                        UseShellExecute = true,
-                    }
-                };
-
-                process.Exited += process_Exited;
-
-                process.Start();
+                return true;
             }
-            // Return error becuase its not windows 8 or 8.1
+            return false;
         }
 
-        void process_Exited(object sender, EventArgs e)
+        private void LaunchProcess()
         {
-            var process = (Process)sender;
-
-            process.Dispose();
+            if (checkNetflixInstalled())
+            {
+                SendKeys.SendWait("^{ESC}");
+                SendKeys.SendWait("netflix");
+                SendKeys.SendWait("{ENTER}");
+            }
         }
 
         public string Name

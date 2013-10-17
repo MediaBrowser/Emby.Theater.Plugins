@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MediaBrowser.Plugins.Netflix.Properties {
+namespace MediaBrowser.Plugins.Channel4.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace MediaBrowser.Plugins.Netflix.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MediaBrowser.Plugins.Netflix.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("MediaBrowser.Plugins.Channel4.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -1,11 +1,11 @@
 ﻿using MediaBrowser.Common.Configuration;
 using MediaBrowser.Common.Plugins;
 using MediaBrowser.Model.Serialization;
-using MediaBrowser.Plugins.Netflix.Configuration;
+using MediaBrowser.Plugins.TVCatchup.Configuration;
 using MediaBrowser.Theater.Interfaces.Plugins;
 using System;
 
-namespace MediaBrowser.Plugins.Netflix
+namespace MediaBrowser.Plugins.TVCatchup
 {
     /// <summary>
     /// Class Plugin
@@ -23,7 +23,7 @@ namespace MediaBrowser.Plugins.Netflix
         /// <value>The name.</value>
         public override string Name
         {
-            get { return "Steam Integration"; }
+            get { return "TVCatchup Integration"; }
         }
 
         public Uri ThumbUri
@@ -33,7 +33,7 @@ namespace MediaBrowser.Plugins.Netflix
 
         public static Uri GetThumbUri()
         {
-            return new Uri("pack://application:,,,/MediaBrowser.Plugins.Steam;component/Resources/tile.png", UriKind.Absolute);
+            return new Uri("pack://application:,,,/MediaBrowser.Plugins.TVCatchup;component/Resources/tile.png", UriKind.Absolute);
         }
     }
 }

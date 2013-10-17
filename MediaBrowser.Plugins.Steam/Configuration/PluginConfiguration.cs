@@ -1,6 +1,6 @@
 ﻿using MediaBrowser.Model.Plugins;
 
-namespace MediaBrowser.Plugins.Steam.Configuration
+namespace MediaBrowser.Plugins.Netflix.Configuration
 {
     public class PluginConfiguration : BasePluginConfiguration
     {

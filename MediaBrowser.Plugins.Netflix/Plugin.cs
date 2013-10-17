@@ -1,11 +1,11 @@
 ﻿using MediaBrowser.Common.Configuration;
 using MediaBrowser.Common.Plugins;
 using MediaBrowser.Model.Serialization;
-using MediaBrowser.Plugins.Steam.Configuration;
+using MediaBrowser.Plugins.Netflix.Configuration;
 using MediaBrowser.Theater.Interfaces.Plugins;
 using System;
 
-namespace MediaBrowser.Plugins.Steam
+namespace MediaBrowser.Plugins.Netflix
 {
     /// <summary>
     /// Class Plugin
