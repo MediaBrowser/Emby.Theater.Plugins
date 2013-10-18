@@ -30,7 +30,7 @@ using System.Windows;
 
 //[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
 
-[assembly: Guid("a7245046-29a1-497a-b308-8229cd47bade")]
+[assembly: Guid("57B993D9-F546-43D4-95F8-6D4D1C2F5FE4")]
 
 [assembly:ThemeInfo(
     ResourceDictionaryLocation.None, //where theme specific resource dictionaries are located
