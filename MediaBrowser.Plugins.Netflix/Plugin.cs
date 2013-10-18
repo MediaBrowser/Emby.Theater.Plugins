@@ -23,7 +23,7 @@ namespace MediaBrowser.Plugins.Netflix
         /// <value>The name.</value>
         public override string Name
         {
-            get { return "Steam Integration"; }
+            get { return "Netflix Integration"; }
         }
 
         public Uri ThumbUri
@@ -33,7 +33,7 @@ namespace MediaBrowser.Plugins.Netflix
 
         public static Uri GetThumbUri()
         {
-            return new Uri("pack://application:,,,/MediaBrowser.Plugins.Steam;component/Resources/tile.png", UriKind.Absolute);
+            return new Uri("pack://application:,,,/MediaBrowser.Plugins.Netflix;component/Resources/tile.png", UriKind.Absolute);
         }
     }
 }

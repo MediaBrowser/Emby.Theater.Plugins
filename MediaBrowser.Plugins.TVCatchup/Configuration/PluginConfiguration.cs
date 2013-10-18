@@ -1,6 +1,6 @@
 ﻿using MediaBrowser.Model.Plugins;
 
-namespace MediaBrowser.Plugins.Netflix.Configuration
+namespace MediaBrowser.Plugins.TVCatchup.Configuration
 {
     public class PluginConfiguration : BasePluginConfiguration
     {

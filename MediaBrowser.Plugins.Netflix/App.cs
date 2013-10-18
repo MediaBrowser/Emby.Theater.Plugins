@@ -7,6 +7,11 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
+using Windows.Management.Deployment;
+using System.Security.Principal;
+using System.Linq;
+
 namespace MediaBrowser.Plugins.Netflix
 {
     public class App : IApp
@@ -28,63 +33,41 @@ namespace MediaBrowser.Plugins.Netflix
             return image;
         }
 
-        private string GetSteamPathFromRegistry()
-        {
-            RegistryKey regKey = Registry.CurrentUser;
-            return regKey.OpenSubKey(@"Software\Valve\Steam").GetValue("SteamExe").ToString();
-        }
-
         public Task Launch()
         {
             return Task.Run(() => LaunchProcess());
         }
 
-
-        private string GetProcessArguments()
+        private bool checkNetflixInstalled()
         {
-            string arguments = "";
-            if (Process.GetProcessesByName("Steam").Length > 0)
+            PackageManager packageManager = new PackageManager();
+
+            IEnumerable<Windows.ApplicationModel.Package> packages = (IEnumerable<Windows.ApplicationModel.Package>)packageManager.FindPackagesForUser(WindowsIdentity.GetCurrent().User.ToString(), "4DF9E0F8.Netflix", "CN=52120C15-ACFA-47FC-A7E3-4974DBA79445");
+
+            if (packages.Count() > 0)
             {
-                arguments = "steam://open/bigpicture";
+                return true;
             }
-            else
-            {
-                arguments = "-bigpicture";
-            }
-            return arguments;
+            return false;
         }
 
         private void LaunchProcess()
         {
-            var process = new Process
+            if (checkNetflixInstalled())
             {
-                EnableRaisingEvents = true,
-
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = GetSteamPathFromRegistry(),
-                    WindowStyle = ProcessWindowStyle.Hidden,
-                    ErrorDialog = false,
-                    UseShellExecute = false,
-                    Arguments = GetProcessArguments()
-                }
-            };
-
-            process.Exited += process_Exited;
-
-            process.Start();
-        }
-
-        void process_Exited(object sender, EventArgs e)
-        {
-            var process = (Process)sender;
-
-            process.Dispose();
+                SendKeys.SendWait("^{ESC}");
+                SendKeys.SendWait("netflix");
+                SendKeys.SendWait("{ENTER}");
+            }
+            else
+            {
+                throw new FileNotFoundException(@"Netflix Metro App is not installed on your system.");
+            }
         }
 
         public string Name
         {
-            get { return "Steam"; }
+            get { return "Netflix"; }
         }
 
         public void Dispose()

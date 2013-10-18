@@ -7,7 +7,12 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-namespace MediaBrowser.Plugins.Netflix
+using System.Windows.Forms;
+using System.Security.Principal;
+using System.Linq;
+using Windows.Management.Deployment;
+
+namespace MediaBrowser.Plugins.Channel5
 {
     public class App : IApp
     {
@@ -28,63 +33,40 @@ namespace MediaBrowser.Plugins.Netflix
             return image;
         }
 
-        private string GetSteamPathFromRegistry()
-        {
-            RegistryKey regKey = Registry.CurrentUser;
-            return regKey.OpenSubKey(@"Software\Valve\Steam").GetValue("SteamExe").ToString();
-        }
-
         public Task Launch()
         {
             return Task.Run(() => LaunchProcess());
         }
 
-
-        private string GetProcessArguments()
+        private bool checkChannel5Installed()
         {
-            string arguments = "";
-            if (Process.GetProcessesByName("Steam").Length > 0)
+            PackageManager packageManager = new PackageManager();
+            IEnumerable<Windows.ApplicationModel.Package> packages = (IEnumerable<Windows.ApplicationModel.Package>)packageManager.FindPackagesForUser(WindowsIdentity.GetCurrent().User.ToString(), "Channel5.Demand5", "CN=D6547641-0EAB-4A6C-9559-B516C20C4050");
+
+            if (packages.Count() > 0)
             {
-                arguments = "steam://open/bigpicture";
+                return true;
             }
-            else
-            {
-                arguments = "-bigpicture";
-            }
-            return arguments;
+            return false;
         }
 
         private void LaunchProcess()
         {
-            var process = new Process
+            if (checkChannel5Installed())
             {
-                EnableRaisingEvents = true,
-
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = GetSteamPathFromRegistry(),
-                    WindowStyle = ProcessWindowStyle.Hidden,
-                    ErrorDialog = false,
-                    UseShellExecute = false,
-                    Arguments = GetProcessArguments()
-                }
-            };
-
-            process.Exited += process_Exited;
-
-            process.Start();
-        }
-
-        void process_Exited(object sender, EventArgs e)
-        {
-            var process = (Process)sender;
-
-            process.Dispose();
+                SendKeys.SendWait("^{ESC}");
+                SendKeys.SendWait("demand 5");
+                SendKeys.SendWait("{ENTER}");
+            }
+            else
+            {
+                throw new FileNotFoundException(@"Demand 5 Metro App is not installed on your system.");
+            }
         }
 
         public string Name
         {
-            get { return "Steam"; }
+            get { return "Demand 5"; }
         }
 
         public void Dispose()

@@ -7,7 +7,12 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-namespace MediaBrowser.Plugins.Netflix
+using System.Windows.Forms;
+using Windows.Management.Deployment;
+using System.Security.Principal;
+using System.Linq;
+
+namespace MediaBrowser.Plugins.Channel4
 {
     public class App : IApp
     {
@@ -28,63 +33,40 @@ namespace MediaBrowser.Plugins.Netflix
             return image;
         }
 
-        private string GetSteamPathFromRegistry()
-        {
-            RegistryKey regKey = Registry.CurrentUser;
-            return regKey.OpenSubKey(@"Software\Valve\Steam").GetValue("SteamExe").ToString();
-        }
-
         public Task Launch()
         {
             return Task.Run(() => LaunchProcess());
         }
 
-
-        private string GetProcessArguments()
+        private bool checkChannel4Installed()
         {
-            string arguments = "";
-            if (Process.GetProcessesByName("Steam").Length > 0)
+            PackageManager packageManager = new PackageManager();
+            IEnumerable<Windows.ApplicationModel.Package> packages = (IEnumerable<Windows.ApplicationModel.Package>)packageManager.FindPackagesForUser(WindowsIdentity.GetCurrent().User.ToString(), "4onDemand.4oD", "CN=EB70642C-18B1-46B6-9902-87C95DC9F493");
+
+            if (packages.Count() > 0)
             {
-                arguments = "steam://open/bigpicture";
+                return true;
             }
-            else
-            {
-                arguments = "-bigpicture";
-            }
-            return arguments;
+            return false;
         }
 
         private void LaunchProcess()
         {
-            var process = new Process
+            if (checkChannel4Installed())
             {
-                EnableRaisingEvents = true,
-
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = GetSteamPathFromRegistry(),
-                    WindowStyle = ProcessWindowStyle.Hidden,
-                    ErrorDialog = false,
-                    UseShellExecute = false,
-                    Arguments = GetProcessArguments()
-                }
-            };
-
-            process.Exited += process_Exited;
-
-            process.Start();
-        }
-
-        void process_Exited(object sender, EventArgs e)
-        {
-            var process = (Process)sender;
-
-            process.Dispose();
+                SendKeys.SendWait("^{ESC}");
+                SendKeys.SendWait("4oD");
+                SendKeys.SendWait("{ENTER}");
+            }
+            else
+            {
+                throw new FileNotFoundException(@"4oD Metro App is not installed on your system.");
+            }
         }
 
         public string Name
         {
-            get { return "Steam"; }
+            get { return "4oD"; }
         }
 
         public void Dispose()
