@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using Windows.Management.Deployment;
+using System.Security.Principal;
+using System.Linq;
 
 namespace MediaBrowser.Plugins.TVCatchup
 {
@@ -37,8 +40,10 @@ namespace MediaBrowser.Plugins.TVCatchup
 
         private bool checkTVCatchupInstalled()
         {
-            string[] dirs = Directory.GetDirectories(@"C:\\Program Files\\WindowsApps\\", "*TVCatchup*");
-            if (dirs.Length > 0)
+            PackageManager packageManager = new PackageManager();
+            IEnumerable<Windows.ApplicationModel.Package> packages = (IEnumerable<Windows.ApplicationModel.Package>)packageManager.FindPackagesForUser(WindowsIdentity.GetCurrent().User.ToString(), "GZero.TVCatchupUK", "CN=3ED8ED7A-1E5C-4EAF-B5E5-F23FC7542213");
+
+            if (packages.Count() > 0)
             {
                 return true;
             }
@@ -52,6 +57,10 @@ namespace MediaBrowser.Plugins.TVCatchup
                 SendKeys.SendWait("^{ESC}");
                 SendKeys.SendWait("TVCatchup");
                 SendKeys.SendWait("{ENTER}");
+            }
+            else
+            {
+                throw new FileNotFoundException(@"TVCatchup Metro App is not installed on your system.");
             }
         }
 

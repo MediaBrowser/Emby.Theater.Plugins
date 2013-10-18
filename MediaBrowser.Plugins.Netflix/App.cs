@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using Windows.Management.Deployment;
+using System.Security.Principal;
+using System.Linq;
 
 namespace MediaBrowser.Plugins.Netflix
 {
@@ -37,8 +40,11 @@ namespace MediaBrowser.Plugins.Netflix
 
         private bool checkNetflixInstalled()
         {
-            string[] dirs = Directory.GetDirectories(@"C:\\Program Files\\WindowsApps\\", "*Netflix*");
-            if (dirs.Length > 0)
+            PackageManager packageManager = new PackageManager();
+
+            IEnumerable<Windows.ApplicationModel.Package> packages = (IEnumerable<Windows.ApplicationModel.Package>)packageManager.FindPackagesForUser(WindowsIdentity.GetCurrent().User.ToString(), "4DF9E0F8.Netflix", "CN=52120C15-ACFA-47FC-A7E3-4974DBA79445");
+
+            if (packages.Count() > 0)
             {
                 return true;
             }
@@ -52,6 +58,10 @@ namespace MediaBrowser.Plugins.Netflix
                 SendKeys.SendWait("^{ESC}");
                 SendKeys.SendWait("netflix");
                 SendKeys.SendWait("{ENTER}");
+            }
+            else
+            {
+                throw new FileNotFoundException(@"Netflix Metro App is not installed on your system.");
             }
         }
 

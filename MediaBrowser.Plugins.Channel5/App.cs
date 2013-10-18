@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Security.Principal;
+using System.Linq;
+using Windows.Management.Deployment;
 
 namespace MediaBrowser.Plugins.Channel5
 {
@@ -37,8 +40,10 @@ namespace MediaBrowser.Plugins.Channel5
 
         private bool checkChannel5Installed()
         {
-            string[] dirs = Directory.GetDirectories(@"C:\\Program Files\\WindowsApps\\", "*Channel5*");
-            if (dirs.Length > 0)
+            PackageManager packageManager = new PackageManager();
+            IEnumerable<Windows.ApplicationModel.Package> packages = (IEnumerable<Windows.ApplicationModel.Package>)packageManager.FindPackagesForUser(WindowsIdentity.GetCurrent().User.ToString(), "Channel5.Demand5", "CN=D6547641-0EAB-4A6C-9559-B516C20C4050");
+
+            if (packages.Count() > 0)
             {
                 return true;
             }
@@ -52,6 +57,10 @@ namespace MediaBrowser.Plugins.Channel5
                 SendKeys.SendWait("^{ESC}");
                 SendKeys.SendWait("demand 5");
                 SendKeys.SendWait("{ENTER}");
+            }
+            else
+            {
+                throw new FileNotFoundException(@"Demand 5 Metro App is not installed on your system.");
             }
         }
 
