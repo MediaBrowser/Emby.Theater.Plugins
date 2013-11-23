@@ -55,7 +55,14 @@ namespace MediaBrowser.Plugins.Kylo
 
         private string GetKyloPath()
         {
-            return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Hillcrest Labs\\Kylo\\Kylo.exe");
+            if (File.Exists(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Hillcrest Labs\\Kylo\\Kylo.exe")))
+            {
+                return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Hillcrest Labs\\Kylo\\Kylo.exe");
+            }
+            else 
+            {
+                return Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ProgramFilesX86), "Hillcrest Labs\\Kylo\\Kylo.exe");
+            }
         }
 
         void process_Exited(object sender, EventArgs e)
