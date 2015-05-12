@@ -1,7 +1,7 @@
-MediaBrowser.Theater.Plugins
+Emby.Theater.Plugins
 ====================
 
-This repository contains all of the theater plugins managed by the Media Browser core team.
+This repository contains all of the Emby Theater plugins managed by the Emby community.
 
 Each of the projects has a build event that copies it's output to the programdata-theater/plugins folder. 
 
